@@ -1,8 +1,7 @@
 <div class="container" *ngIf="dataLoaded">
 
-  <h3>See the machines on a map</h3>
   <div class="map">
-    <agm-map [latitude]="machines[0].latitude" [longitude]="machines[0].longitude" [zoom]="2">
+    <agm-map [latitude]="31" [longitude]="27" [zoom]="2">
       <agm-marker *ngFor="let machine of machines" [latitude]="machine.latitude" [longitude]="machine.longitude"></agm-marker>
     </agm-map>  
   </div>
