@@ -1,27 +1,61 @@
-# MSmart
+# mSmart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
+This application is a prototype offering an overview console for industrial machinery sensors/status.
+**mSmart** stands for Smart Maintenance
 
-## Development server
+## The app
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is an Angular 8 web application. For the scope of the current project state, it is built on top of a mock API.
 
-## Code scaffolding
+## How to start mSmart
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The app is built as a Docker image. In order to build it, please run:
 
-## Build
+```
+  docker build -t msmart .
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+After the app is built, you can start it with
+```
+  docker run -p 80:80 msmart
+```
 
-## Running unit tests
+At this point, if you point a browser towards http://localhost, you should see the application's home page.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How it's built
 
-## Running end-to-end tests
+### Modules
+The app is built on the concept of lazily loaded modules. This way, the application is very versatile, and only loads the modules that are needed at a time.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+There are currently 2 modules: `main` and `status`. 
 
-## Further help
+#### Main module
+The `main` module is there just for setting up the frame.
+It contains the root component, where the routing will happen (contains the _router-outlet_)
+Additionaly, it could also be the host for the navigation.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Currently the app has no navigation.
+
+The `services` folder houses a guard for authentication. The auth is not yet developed, so the guard simply returns true.
+
+#### Status module
+This module contains the status data & info.
+The routes to it are protected by the existence of a logged in user.
+There are 2 main page-components: 
+
+* Dashboard - which contains a few views into the current machines' status
+* Detailed view - which contains a detail on a machine
+
+##### The Dashboard
+The Dashboard makes use of the `Overview` component and the `Machine list` component.
+
+The Overview contains a google maps integration, showing all machines on the world map. It also has an exhaustive list which updates on each event, through an observable.
+
+The Machine list is a filtered list for a specific status of the machines. This is also updated by the same Observable.
+
+
+##### The Detailed view
+This is a much simpler view, which just shows the details about a machine, and a list of last known events.
+This one also listens to the events observable, to update its last known events list.
+
+In order to navigate to a machine's detailed view, one must click on any of the list items in any of the components.
