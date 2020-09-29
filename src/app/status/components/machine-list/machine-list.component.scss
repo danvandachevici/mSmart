@@ -1,0 +1,52 @@
+.errorred-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+  header {
+    width: 100%;
+    background: #acacac;
+    height: 40px;
+    border-bottom: 1px dotted grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: red;
+  }
+  section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    .no-errors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 20%;
+      }
+    }
+    
+    table {
+      width: 100%;
+      tr {
+        cursor: pointer;
+        width: 100%;
+
+        &:hover {
+          background: #bababa;
+        }
+        td {
+          text-align: center;
+          span.small {
+            font-size: 10px;
+            color: blue;
+          }
+        }
+      }
+    }
+  }
+}

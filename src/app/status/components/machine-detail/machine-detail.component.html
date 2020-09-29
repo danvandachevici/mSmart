@@ -1,0 +1,31 @@
+<div class="container" *ngIf="dataLoaded">
+  <div class="map">
+    <agm-map [latitude]="machine.latitude" [longitude]="machine.longitude">
+      <agm-marker [latitude]="machine.latitude" [longitude]="machine.longitude"></agm-marker>
+    </agm-map>  
+  </div>
+  
+  <div class="machine-data">
+    <h3>Info about the machine</h3>
+
+    <ul>
+      <li>Type: {{machine.machineType}}</li>
+      <li>ID: {{machine.id}}</li>
+      <li>Floor: {{machine.floor}}</li>
+      <li>Installed: {{machine.installDate | date}}</li>
+      <li>Last maintenance: {{machine.lastMaintenance | date}}</li>
+      <li>Machine type: {{machine.machineType}}</li>
+    </ul>
+  </div>
+  
+  <div class="machine-events">
+    <h3>Last known statuses:</h3>
+
+    <ul>
+      <li *ngFor="let event of machine.events" class="previous-statuses">
+        <span>{{event.status}}</span>
+        <span><app-machine-status-circle [type]="event.status"></app-machine-status-circle></span>
+      </li>
+    </ul>
+  </div>
+</div>

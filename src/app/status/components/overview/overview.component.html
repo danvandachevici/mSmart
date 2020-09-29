@@ -1,0 +1,43 @@
+<div class="container" *ngIf="dataLoaded">
+
+  <h3>See the machines on a map</h3>
+  <div class="map">
+    <agm-map [latitude]="machines[0].latitude" [longitude]="machines[0].longitude" [zoom]="2">
+      <agm-marker *ngFor="let machine of machines" [latitude]="machine.latitude" [longitude]="machine.longitude"></agm-marker>
+    </agm-map>  
+  </div>
+  
+  <h3>Overview of all machines</h3>
+  
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Machine type</th>
+        <th>Installed at</th>
+        <th>Last maintenance</th>
+        <th>Status</th>
+        <th>Last status change</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr *ngFor="let machine of machines; let idx = index" [routerLink]="['/machines/', machine.id]">
+        <td>{{idx+1}}</td>
+        <td class="machine-type">
+          <span>{{machine.machineType}}</span>
+          <span></span>
+        </td>
+        <td>{{machine.installDate | date}}<span class="small">({{machine.installDate | lastmaintenance}})</span></td>
+        <td>{{machine.lastMaintenance | date}}<span class="small">({{machine.lastMaintenance | lastmaintenance}})</span></td>
+        <td class="status">
+          <span><app-machine-status-circle [type]="machine.status"></app-machine-status-circle></span>
+          <span>{{machine.status}}</span>
+        </td>
+        <td>{{machine.lastStatusChange | date:"yyyy-MM-dd,HH:mm"}}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+</div>

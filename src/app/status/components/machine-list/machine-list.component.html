@@ -1,0 +1,30 @@
+<div class="errorred-list">
+  <header>{{title}} ({{filteredMachines.length}}/{{total}})</header>
+  <section>
+    <div *ngIf="filteredMachines.length; then errorredMachines else noErrorredMachines"></div>
+  </section>
+
+  <ng-template #errorredMachines>
+    <table>
+      <tr>
+        <th></th>
+        <th>Machine type</th>
+        <th>Status</th>
+        <th>Last maintenance</th>
+      </tr>
+      <tr *ngFor="let machine of filteredMachines; let idx = index" [routerLink]="['/machines/', machine.id]">
+        <td>{{idx+1}}</td>
+        <td>{{machine.machineType}}</td>
+        <td>{{machine.status}}</td>
+        <td>{{machine.lastMaintenance | date}}<span class="small">({{machine.lastMaintenance | lastmaintenance}})</span></td>
+      </tr>
+    </table>
+  </ng-template>
+  
+  <ng-template #noErrorredMachines>
+    <div class="no-errors">
+      <img src="https://cdn.pixabay.com/photo/2017/01/13/01/22/ok-1976099_960_720.png" alt="No errorring machines were found">
+      <p>No {{statusListType}} machines found. The day is good.</p>
+    </div>
+  </ng-template>
+</div>

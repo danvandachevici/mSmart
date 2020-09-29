@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .map {
+    width: 100%;
+    agm-map {
+      height: 300px;
+    }
+  }
+  .machine-data {
+    width: 50%;
+  }
+  .machine-events {
+    width: 30%;
+    height: 200px;
+    overflow: scroll;
+
+    .previous-statuses {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      &:hover {
+        background-color: #cacaca;
+      }
+    }
+  }
+}

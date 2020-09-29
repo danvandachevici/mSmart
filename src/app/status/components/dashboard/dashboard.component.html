@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div class="left-side">
+    <app-machine-list [statusListType]='"errored"' [title]='"Errorred machines"'></app-machine-list>
+  </div>
+  <div class="right-side">
+    <app-machine-list [statusListType]='"idle"' [title]='"Idle machines"'></app-machine-list>
+  </div>
+
+  <!-- <div class="left-side">
+    <app-machine-list [statusListType]='"running"' [title]='"Running machines"'></app-machine-list>
+  </div>
+  <div class="right-side">
+    <app-machine-list [statusListType]='"finished"' [title]='"Finished machines"'></app-machine-list>
+  </div> -->
+
+  <div class="bottom">
+    <app-overview></app-overview>
+  </div>
+</div>
