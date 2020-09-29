@@ -1,5 +1,8 @@
 #build stage
 FROM node:12
+#in order to easily clear up the build phases
+#do this: docker image prune --filter label=stage=builder
+LABEL stage=build
 COPY $PWD/ /app/
 WORKDIR /app/
 RUN npm install

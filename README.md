@@ -50,6 +50,7 @@ There are 2 main page-components:
 The Dashboard makes use of the `Overview` component and the `Machine list` component.
 
 The Overview contains a google maps integration, showing all machines on the world map. It also has an exhaustive list which updates on each event, through an observable.
+In order for the google maps to work, an API key must be provided. This API key needs to be added to the status module. (`src/app/status/status.module.ts`)
 
 The Machine list is a filtered list for a specific status of the machines. This is also updated by the same Observable.
 
